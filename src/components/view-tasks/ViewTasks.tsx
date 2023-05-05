@@ -25,6 +25,7 @@ function ViewTasks({ addNewTask, clearCompletedTasks, itemsLeftToCompleted }: Pr
 
   return (
     <>
+      <h1>Todo</h1>
       <input type="text" placeholder="Add new task" onKeyDown={ handleInputTask } />
       <Outlet />
       <footer>
