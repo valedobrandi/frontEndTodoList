@@ -1,40 +1,80 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '../public/vite.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Task } from './types';
+import ViewTasks from './components/view-tasks/ViewTasks';
+import ListTasks from './components/list-tasks/ListTasks';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [allTasks, setAllTasks] = useState<Task[]>([]);
+  const completedTasks = allTasks.filter((task) => task.completed);
+  const activeTasks = allTasks.filter((task) => !task.completed);
+
+  const toggleStatusTask = (currentTask: Task) => {
+    const newTasks = allTasks.map((task) => {
+      if (task.id === currentTask.id) {
+        return ({
+          ...task,
+          completed: !task.completed,
+        });
+      }
+
+      return task;
+    });
+
+    setAllTasks(newTasks);
+  };
+
+  const addNewTask = (newTask: Task) => {
+    setAllTasks((prevAllTasks) => [...prevAllTasks, newTask]);
+  };
+
+  const deleteTask = (taskToDelete:Task) => {
+    setAllTasks((prevAllTasks) => prevAllTasks
+      .filter((task) => task.id !== taskToDelete.id));
+  };
+
+  const clearCompletedTasks = () => {
+    setAllTasks((prevAllTasks) => prevAllTasks.filter((task) => !task.completed));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={ viteLogo } className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={ reactLogo } className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={ () => setCount((prevCount) => prevCount + 1) }>
-          count is
-          {' '}
-          {count}
-        </button>
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={ <ViewTasks
+            itemsLeftToCompleted={ allTasks.length - completedTasks.length }
+            addNewTask={ addNewTask }
+            clearCompletedTasks={ clearCompletedTasks }
+          /> }
+        >
+          <Route
+            index
+            element={ <ListTasks
+              tasks={ allTasks }
+              toggleStatusTask={ toggleStatusTask }
+              deleteTask={ deleteTask }
+            /> }
+          />
+          <Route
+            path="/active"
+            element={ <ListTasks
+              tasks={ activeTasks }
+              toggleStatusTask={ toggleStatusTask }
+              deleteTask={ deleteTask }
+            /> }
+          />
+          <Route
+            path="/completed"
+            element={ <ListTasks
+              tasks={ completedTasks }
+              toggleStatusTask={ toggleStatusTask }
+              deleteTask={ deleteTask }
+            /> }
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
