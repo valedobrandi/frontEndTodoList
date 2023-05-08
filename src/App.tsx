@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Task } from './types';
-import ViewTasks from './components/view-tasks/ViewTasks';
-import ListTasks from './components/list-tasks/ListTasks';
+
+import ViewTasks from './components/ViewTasks';
+import ListTasks from './components/ListTasks';
+
 
 function App() {
   const [allTasks, setAllTasks] = useState<Task[]>([]);
