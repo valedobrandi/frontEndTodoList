@@ -3,35 +3,17 @@ import { Outlet, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { Task } from '../../types';
 
-import iconMoon from '../../assets/icon-moon.svg';
-import iconSun from '../../assets/icon-sun.svg';
-
-import {
-  Title,
-  ButtonTheme,
-  Wrapper,
-  InputTask,
-  Footer,
-  CounterTasksToLeft,
-  FilterTasks,
-  ClearCompleted,
-  HeaderWrapper,
-} from './styles';
-
 type Props = {
   itemsLeftToCompleted: number,
   addNewTask: (task: Task) => void,
   clearCompletedTasks: () => void,
-  toggleTheme: () => void,
-  isDarkTheme: boolean,
 };
 
 function ViewTasks({
   addNewTask,
   clearCompletedTasks,
   itemsLeftToCompleted,
-  toggleTheme,
-  isDarkTheme }: Props) {
+}: Props) {
   const handleInputTask = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       const newTask: Task = {
@@ -46,22 +28,19 @@ function ViewTasks({
   };
 
   return (
-    <Wrapper isDarkTheme={ isDarkTheme }>
-      <HeaderWrapper>
-        <Title>Todo</Title>
-        <ButtonTheme onClick={ toggleTheme }>
-          <img src={ isDarkTheme ? iconSun : iconMoon } alt="Toggle theme" />
-        </ButtonTheme>
-      </HeaderWrapper>
-      <InputTask type="text" placeholder="Add new task" onKeyDown={ handleInputTask } />
+    <div>
+      <header>
+        <h1>Todo</h1>
+      </header>
+      <input type="text" placeholder="Add new task" onKeyDown={ handleInputTask } />
       <Outlet />
-      <Footer>
-        <CounterTasksToLeft>
+      <footer>
+        <span>
           {itemsLeftToCompleted}
           {' '}
           items left
-        </CounterTasksToLeft>
-        <FilterTasks>
+        </span>
+        <div>
           <span>
             <Link to="/">All</Link>
           </span>
@@ -71,16 +50,16 @@ function ViewTasks({
           <span>
             <Link to="/completed">Completed</Link>
           </span>
-        </FilterTasks>
-        <ClearCompleted>
+        </div>
+        <span>
           <button
             onClick={ clearCompletedTasks }
           >
             Clear Completed
           </button>
-        </ClearCompleted>
-      </Footer>
-    </Wrapper>
+        </span>
+      </footer>
+    </div>
   );
 }
 

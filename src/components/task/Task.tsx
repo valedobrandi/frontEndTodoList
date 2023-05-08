@@ -2,13 +2,6 @@ import { Task as TaskType } from '../../types';
 
 import iconCross from '../../assets/icon-cross.svg';
 
-import {
-  ListItem,
-  Checkbox,
-  LabelCheckbox,
-  ButtonRemove,
-} from './styles';
-
 type Props = {
   task: TaskType,
   toggleStatusTask: (task: TaskType) => void;
@@ -21,22 +14,22 @@ function Task({
   deleteTask,
 }: Props) {
   return (
-    <ListItem tastCompleted={ task.completed }>
-      <Checkbox
+    <li>
+      <input
         id={ task.id }
         type="checkbox"
         onChange={ () => toggleStatusTask(task) }
         defaultChecked={ task.completed }
       />
-      <LabelCheckbox htmlFor={ task.id }>
+      <label htmlFor={ task.id }>
         {task.name}
-      </LabelCheckbox>
-      <ButtonRemove
+      </label>
+      <button
         onClick={ () => deleteTask(task) }
       >
         <img src={ iconCross } alt="Remove task" />
-      </ButtonRemove>
-    </ListItem>
+      </button>
+    </li>
   );
 }
 
