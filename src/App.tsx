@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import ViewTasks from './components/view-tasks/ViewTasks';
-import ListTasks from './components/list-tasks/ListTasks';
+import ViewTasks from './components/view-tasks/view-tasks';
+import ListTasks from './components/list-tasks/list-tasks';
 
 import { Task } from './types';
 

@@ -1,5 +1,5 @@
 import { Task as TaskType } from '../../types';
-import Task from '../task/Task';
+import Task from '../task/task';
 
 type Props = {
   tasks: TaskType[],
