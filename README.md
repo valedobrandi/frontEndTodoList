@@ -48,4 +48,4 @@ Agora, basta criar o PULL REQUEST clicando no botão `Create Pull Request`.
 
 > **Atenção ⚠️:** Antes realizar o exercício, é importante que você instale as dependências do projeto com o comando `npm install`.
 
-**1** - Você deve implementar uma estilização para a aplicação desse repositório utilizando Styled Components. A estilização deve ser o mais próxima possível do layout disponível na pasta `src/desing` na versão desktop, implementando inclusive os temas `dark` e `light`.
+**1** - Você deve implementar uma estilização para a aplicação desse repositório utilizando Styled Components. A estilização deve ser o mais próxima possível do layout disponível na pasta `src/design` na versão desktop, implementando inclusive os temas `dark` e `light`.
