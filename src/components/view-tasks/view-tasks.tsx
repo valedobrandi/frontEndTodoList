@@ -2,17 +2,22 @@ import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { Task } from '../../types';
+import { Container, Footer, Header, Input } from '../../styles';
 
 type Props = {
   itemsLeftToCompleted: number,
   addNewTask: (task: Task) => void,
   clearCompletedTasks: () => void,
+  isDarkTheme: boolean,
+  handleTheme: () => void;
 };
 
 function ViewTasks({
   addNewTask,
   clearCompletedTasks,
   itemsLeftToCompleted,
+  isDarkTheme,
+  handleTheme,
 }: Props) {
   const handleInputTask = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -28,18 +33,24 @@ function ViewTasks({
   };
 
   return (
-    <div>
-      <header>
+    <Container>
+      <Header>
         <h1>Todo</h1>
-      </header>
-      <input type="text" placeholder="Add new task" onKeyDown={ handleInputTask } />
+        <button
+          type="button"
+          onClick={ handleTheme }
+        >
+          <img src={ isDarkTheme ? './icon-moon.svg' : './icon-sun.svg' } alt="" />
+        </button>
+      </Header>
+      <Input type="text" placeholder="Add new task" onKeyDown={ handleInputTask } />
       <Outlet />
-      <footer>
-        <span>
+      <Footer>
+        <p>
           {itemsLeftToCompleted}
           {' '}
           items left
-        </span>
+        </p>
         <div>
           <span>
             <Link to="/">All</Link>
@@ -55,11 +66,11 @@ function ViewTasks({
           <button
             onClick={ clearCompletedTasks }
           >
-            Clear Completed
+            <p>Clear Completed</p>
           </button>
         </span>
-      </footer>
-    </div>
+      </Footer>
+    </Container>
   );
 }
 

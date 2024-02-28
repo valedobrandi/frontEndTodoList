@@ -1,15 +1,23 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import { ThemeProvider } from 'styled-components';
 import ViewTasks from './components/view-tasks/view-tasks';
 import ListTasks from './components/list-tasks/list-tasks';
 
 import { Task } from './types';
+import { dark, light } from './styles/themes';
+import { GlobalStyle } from './styles';
 
 function App() {
   const [allTasks, setAllTasks] = useState<Task[]>([]);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const completedTasks = allTasks.filter((task) => task.completed);
   const activeTasks = allTasks.filter((task) => !task.completed);
+
+  const handleTheme = () => {
+    setIsDarkTheme((state) => !state);
+  };
 
   const toggleStatusTask = (currentTask: Task) => {
     const newTasks = allTasks.map((task) => {
@@ -40,41 +48,46 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={ <ViewTasks
-            itemsLeftToCompleted={ allTasks.length - completedTasks.length }
-            addNewTask={ addNewTask }
-            clearCompletedTasks={ clearCompletedTasks }
-          /> }
-        >
+      <ThemeProvider theme={ isDarkTheme ? light : dark }>
+        <GlobalStyle />
+        <Routes>
           <Route
-            index
-            element={ <ListTasks
-              tasks={ allTasks }
-              toggleStatusTask={ toggleStatusTask }
-              deleteTask={ deleteTask }
+            path="/"
+            element={ <ViewTasks
+              itemsLeftToCompleted={ allTasks.length - completedTasks.length }
+              addNewTask={ addNewTask }
+              clearCompletedTasks={ clearCompletedTasks }
+              handleTheme={ handleTheme }
+              isDarkTheme={ isDarkTheme }
             /> }
-          />
-          <Route
-            path="/active"
-            element={ <ListTasks
-              tasks={ activeTasks }
-              toggleStatusTask={ toggleStatusTask }
-              deleteTask={ deleteTask }
-            /> }
-          />
-          <Route
-            path="/completed"
-            element={ <ListTasks
-              tasks={ completedTasks }
-              toggleStatusTask={ toggleStatusTask }
-              deleteTask={ deleteTask }
-            /> }
-          />
-        </Route>
-      </Routes>
+          >
+            <Route
+              index
+              element={ <ListTasks
+                tasks={ allTasks }
+                toggleStatusTask={ toggleStatusTask }
+                deleteTask={ deleteTask }
+              /> }
+            />
+            <Route
+              path="/active"
+              element={ <ListTasks
+                tasks={ activeTasks }
+                toggleStatusTask={ toggleStatusTask }
+                deleteTask={ deleteTask }
+              /> }
+            />
+            <Route
+              path="/completed"
+              element={ <ListTasks
+                tasks={ completedTasks }
+                toggleStatusTask={ toggleStatusTask }
+                deleteTask={ deleteTask }
+              /> }
+            />
+          </Route>
+        </Routes>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }
