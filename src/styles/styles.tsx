@@ -1,20 +1,17 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-@font-face {
-  font-family: "JoseFinSans";
-  src: url("./fonts/JosefinSans-VariableFont_wght.ttf") format("truetype");
-}
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "JoseFinSans", sans-serif;
+        font-family: sans-serif;
         font-size: 1rem;
+        font-family: "JosefinSans";
       }
 
     body {
-      background-image:  ${(props) => props.theme.colors.backgroundImage};
+      background-image: ${(props) => props.theme.colors.backgroundImage};
       background-color: ${(props) => props.theme.colors.background};
       background-size: cover;
       background-size: 100% 250px;
@@ -53,7 +50,7 @@ export const Container = styled.div`
   display: block;
   width: 30rem;
   height: auto;
-  margin: 60px auto;
+  margin: 120px auto;
 `;
 
 export const Header = styled.header`
@@ -82,12 +79,14 @@ export const Input = styled.input`
   padding: 0.8rem;
   width: 100%;
   background-color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primaryText};
   border: none;
   margin-bottom: 2rem;
-  box-shadow:  rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  box-shadow:  e6e5e9 0px 8px 15px 4px;
 
   ::placeholder {
     color: ${(props) => props.theme.colors.primaryText};
+  
   }
 `;
 
@@ -98,7 +97,8 @@ export const Footer = styled.footer`
   border: none;
   color: #777A92;
   padding: 0.5rem;
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 8px 15px 4px;
+  border-color: ${(props) => props.theme.colors.borderColor};
+  box-shadow: e6e5e9 0px 8px 15px 4px;
 
   a {
     color: ${(props) => props.theme.colors.primaryText};
@@ -115,10 +115,12 @@ export const Footer = styled.footer`
 `;
 
 export const Li = styled(Footer)`
-  border-bottom: 0.1rem solid #383a4f;
-  color: ${(props) => props.theme.colors.secondary};
+  border-bottom: 0.1rem solid;
+  border-color: ${(props) => props.theme.colors.borderColor};
+  color: ${(props) => props.theme.colors.primaryText};
   justify-content: flex-start;
- 
+  align-items: flex-start;
+  padding: 1rem 0;
 
   input {
     margin: 0 10px;
@@ -126,9 +128,7 @@ export const Li = styled(Footer)`
   }
 
   label {
-    margin-bottom: 5px;
     display: flex; 
-    align-items: center; 
   }
 
   label:before {
@@ -136,9 +136,9 @@ export const Li = styled(Footer)`
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    border: 1px solid #4D5066;
-    display: inline-block;
-    margin-right: 15px;
+    border: 1px solid;
+    border-color: ${(props) => props.theme.colors.borderColor};
+    margin-right: 2rem;
   }
 
   input:checked + label:before {
@@ -150,9 +150,14 @@ export const Li = styled(Footer)`
 
   input:checked + label {
     text-decoration: line-through;
+    color: ${(props) => props.theme.colors.secondaryText};
   }
   
   button {
-    display: none;
+    margin-left: 30px;
+
+    img {
+      width: 10px;
+    }
   }
 `;

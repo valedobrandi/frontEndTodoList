@@ -7,7 +7,7 @@ import ListTasks from './components/list-tasks/list-tasks';
 
 import { Task } from './types';
 import { dark, light } from './styles/themes';
-import { GlobalStyle } from './styles';
+import { GlobalStyle } from './styles/styles';
 
 function App() {
   const [allTasks, setAllTasks] = useState<Task[]>([]);
@@ -64,6 +64,7 @@ function App() {
             <Route
               index
               element={ <ListTasks
+                setAllTasks={ setAllTasks }
                 tasks={ allTasks }
                 toggleStatusTask={ toggleStatusTask }
                 deleteTask={ deleteTask }
@@ -72,6 +73,7 @@ function App() {
             <Route
               path="/active"
               element={ <ListTasks
+                setAllTasks={ setAllTasks }
                 tasks={ activeTasks }
                 toggleStatusTask={ toggleStatusTask }
                 deleteTask={ deleteTask }
@@ -80,6 +82,7 @@ function App() {
             <Route
               path="/completed"
               element={ <ListTasks
+                setAllTasks={ setAllTasks }
                 tasks={ completedTasks }
                 toggleStatusTask={ toggleStatusTask }
                 deleteTask={ deleteTask }

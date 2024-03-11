@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { Task } from '../../types';
-import { Container, Footer, Header, Input } from '../../styles';
+import { Container, Footer, Header, Input } from '../../styles/styles';
 
 type Props = {
   itemsLeftToCompleted: number,
@@ -43,14 +43,10 @@ function ViewTasks({
           <img src={ isDarkTheme ? './icon-moon.svg' : './icon-sun.svg' } alt="" />
         </button>
       </Header>
-      <Input type="text" placeholder="Add new task" onKeyDown={ handleInputTask } />
+      <Input type="text" placeholder="Write a new task" onKeyDown={ handleInputTask } />
       <Outlet />
       <Footer>
-        <p>
-          {itemsLeftToCompleted}
-          {' '}
-          items left
-        </p>
+        <p>{`${itemsLeftToCompleted} Items left`}</p>
         <div>
           <span>
             <Link to="/">All</Link>
@@ -70,6 +66,7 @@ function ViewTasks({
           </button>
         </span>
       </Footer>
+      <p style={{fontSize: '0.7rem', marginTop: '1rem', textAlign: 'center' }}>Drag and drop to reorder list</p>
     </Container>
   );
 }
