@@ -6,6 +6,6 @@ Skills:
 
 React components and react libraries.
 
-Surge Deploy: 
+Surge Deploy: https://frontendtodolist.surge.sh/
 
-Edit in StackBlitz: 
+Edit in StackBlitz: https://stackblitz.com/~/github.com/valedobrandi/frontEndTodoList

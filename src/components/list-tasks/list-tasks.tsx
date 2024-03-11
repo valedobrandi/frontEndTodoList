@@ -1,5 +1,4 @@
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { useEffect, useState } from 'react';
 import { Task as TaskType } from '../../types';
 import Task from '../task/task';
 import { Li } from '../../styles/styles';
