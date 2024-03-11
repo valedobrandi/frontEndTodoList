@@ -66,7 +66,9 @@ function ViewTasks({
           </button>
         </span>
       </Footer>
-      <p style={{fontSize: '0.7rem', marginTop: '1rem', textAlign: 'center' }}>Drag and drop to reorder list</p>
+      <p style={ { fontSize: '0.7rem', marginTop: '1rem', textAlign: 'center' } }>
+        Drag and drop to reorder list
+      </p>
     </Container>
   );
 }
