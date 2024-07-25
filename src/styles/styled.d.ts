@@ -10,6 +10,9 @@ declare module 'styled-components' {
       secondary: string,
       background: string,
       borderColor: string,
+    },
+    svg: {
+      backgroundImage: string
     }
   }
 }

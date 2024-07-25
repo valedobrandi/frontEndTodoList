@@ -17,7 +17,6 @@ function ListTasks({ tasks, toggleStatusTask, deleteTask, setAllTasks }: Props) 
     const newItems = Array.from(tasks);
     const [reOrderItem] = newItems.splice(result.source.index, 1);
     newItems.splice(result.destination.index, 0, reOrderItem);
-    console.log(newItems);
 
     setAllTasks(newItems);
   };

@@ -37,6 +37,7 @@ function ViewTasks({
       <Header>
         <h1>Todo</h1>
         <button
+          style={ { border: 'none', padding: 0 } }
           type="button"
           onClick={ handleTheme }
         >
@@ -46,16 +47,16 @@ function ViewTasks({
       <Input type="text" placeholder="Write a new task" onKeyDown={ handleInputTask } />
       <Outlet />
       <Footer>
-        <p>{`${itemsLeftToCompleted} Items left`}</p>
+        <p>{`Tasks: (${itemsLeftToCompleted}) `}</p>
         <div>
           <span>
-            <Link to="/">All</Link>
+            <Link to="/">ALL</Link>
           </span>
           <span>
-            <Link to="/active">Active</Link>
+            <Link to="/active">UNDONE</Link>
           </span>
           <span>
-            <Link to="/completed">Completed</Link>
+            <Link to="/completed">DONE</Link>
           </span>
         </div>
         <span>

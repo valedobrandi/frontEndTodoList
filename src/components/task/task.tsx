@@ -25,6 +25,7 @@ function Task({
         {task.name}
       </label>
       <button
+        style={ { border: 'none', padding: 0 } }
         onClick={ () => deleteTask(task) }
       >
         <img src={ iconCross } alt="Remove task" />

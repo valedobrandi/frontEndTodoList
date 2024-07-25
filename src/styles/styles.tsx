@@ -25,23 +25,23 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     button {
-      border: none;
+      border: 1px solid;
+      border-color: ${(props) => props.theme.colors.primaryText};
+      padding: 4px;
+      border-radius: 25px;
       background-color: transparent;
       cursor: pointer;
 
       p:hover {
           color: blue;
         }
-      
     }
-
 
     p {
       color: ${(props) => props.theme.colors.primaryText};
     }
 
     a {
-      text-decoration: none;
       color: grey
     }
 `;
@@ -92,7 +92,8 @@ export const Input = styled.input`
 
 export const Footer = styled.footer`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;;
+  align-items: center;
   background-color: ${(props) => props.theme.colors.primary};
   border: none;
   color: #777A92;
@@ -102,10 +103,6 @@ export const Footer = styled.footer`
 
   a {
     color: ${(props) => props.theme.colors.primaryText};
-  }
-
-  a:hover {
-    color: blue;
   }
 
   span > a[href="/active"] {
@@ -142,7 +139,7 @@ export const Li = styled(Footer)`
   }
 
   input:checked + label:before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='9'%3E%3Cpath fill='none' stroke='%23FFF' stroke-width='2' d='M1 4.304L3.696 7l6-6'/%3E%3C/svg%3E");
+    background-image: ${(props) => props.theme.svg.backgroundImage};;
     background-position: center;
     background-size: 18px;
     background-repeat: no-repeat;
@@ -150,6 +147,8 @@ export const Li = styled(Footer)`
 
   input:checked + label {
     text-decoration: line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 0.1rem;
     color: ${(props) => props.theme.colors.secondaryText};
   }
   
